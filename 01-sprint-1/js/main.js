@@ -9,9 +9,11 @@ const buttonCancelForm = document.querySelector('.js-btn-cancel');
 const inputDesc = document.querySelector('.js-input-desc');
 const inputPhoto = document.querySelector('.js-input-photo');
 const inputName = document.querySelector('.js-input-name');
+const inputRace = document.querySelector('.js-input-race');
 const linkNewFormElememt = document.querySelector('.js-button-new-form');
 const labelMessageError = document.querySelector('.js-label-error');
 const input_search_desc = document.querySelector('.js_in_search_desc');
+const input_search_race = document.querySelector('.js_in_search_race');
 
 //Objetos con cada gatito
 const kittenData_1 = {
@@ -132,7 +134,7 @@ function cancelNewKitten(event) {
 }
 
 //Filtrar por descripción
-function filterKitten(event) {
+/* function filterKitten(event) {
   event.preventDefault();
   const descrSearchText = input_search_desc.value;
   listElement.innerHTML = '';
@@ -141,6 +143,18 @@ function filterKitten(event) {
       listElement.innerHTML += renderKitten(kittenItem);
     }
   }
+} */
+
+function filterKitten(event) {
+  event.preventDefault();
+  const descrSearchText = input_search_desc.value;
+  const raceSearchText = input_search_race.value;
+  listElement.innerHTML = '';
+  const resultKittens = kittenDataList
+    .filter((resultKitten) => resultKitten.desc.includes(descrSearchText))
+    .filter((resultKitten) => resultKitten.race.includes(raceSearchText));
+
+  renderKittenList(resultKittens);
 }
 
 //Mostrar el litado de gatitos en ell HTML
