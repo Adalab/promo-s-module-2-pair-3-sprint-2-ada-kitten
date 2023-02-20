@@ -89,12 +89,12 @@ La solución del ejercicio completo se subirá al final del módulo, si en una s
 #### 2.11 Arrays II
 
 - [ ] 1. Conoce el trabajo de tu pareja
-- [ ] 2. **FORMULARIO:** Agregar un nuevo gatito al listado
+- [X] 2. **FORMULARIO:** Agregar un nuevo gatito al listado
 
 #### 2.12 Métodos funcionales de arrays
 
-- [ ] 1. **FILTRAR:** Filtrar por descripción
-- [ ] 2. **FILTRAR:** Filtrar por descripción y por raza
+- [X] 1. **FILTRAR:** Filtrar por descripción
+- [X] 2. **FILTRAR:** Filtrar por descripción y por raza
 
 #### 2.13 Peticiones al servidor I
 
