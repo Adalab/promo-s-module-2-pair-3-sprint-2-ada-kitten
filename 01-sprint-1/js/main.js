@@ -16,7 +16,7 @@ const input_search_desc = document.querySelector('.js_in_search_desc');
 const input_search_race = document.querySelector('.js_in_search_race');
 
 //Objetos con cada gatito
-const kittenData_1 = {
+/* const kittenData_1 = {
   image: 'https://dev.adalab.es/gato-siames.webp',
   name: 'Anastacio',
   desc: 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.',
@@ -33,7 +33,7 @@ const kittenData_3 = {
   name: 'Cielo',
   desc: ' Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.',
   race: 'Maine Coon',
-};
+}; */
 
 const newKittenDataObject = {
   image: '',
@@ -42,7 +42,8 @@ const newKittenDataObject = {
   race: '',
 };
 
-const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+let kittenDataList = [];
+/* const kittenDataList = [kittenData_1,kittenData_2,kittenData_3]; */
 
 //Funciones
 function renderKitten(kittenData) {
@@ -165,3 +166,21 @@ linkNewFormElememt.addEventListener('click', handleClickNewCatForm);
 searchButton.addEventListener('click', filterKitten);
 buttonAdd.addEventListener('click', addNewKitten);
 buttonCancelForm.addEventListener('click', cancelNewKitten);
+
+const GITHUB_USER = '<NataliaBlanco>';
+const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
+fetch(SERVER_URL, {
+  method: 'GET',
+  headers: { 'Content-Type': 'application/json' },
+})
+  .then((response) => response.json())
+  .then((data) => {
+    kittenDataList = data.results.map((cat) => ({
+      name: cat.name,
+      desc: cat.desc,
+      image: cat.image,
+      race: cat.race,
+    }));
+    renderKittenList(kittenDataList);
+  });
+console.log(kittenDataList);
