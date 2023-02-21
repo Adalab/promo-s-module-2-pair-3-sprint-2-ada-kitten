@@ -98,13 +98,13 @@ La solución del ejercicio completo se subirá al final del módulo, si en una s
 
 #### 2.13 Peticiones al servidor I
 
-- [ ] 1. **LISTADO:** Obtener listado de gatitos desde el servidor
+- [X] 1. **LISTADO:** Obtener listado de gatitos desde el servidor
 
 #### 2.14 Peticiones al servidor II
 
-- [ ] 1. **LISTADO:** Guardar en el local storage
-- [ ] 1. **BONUS - FORMULARIO:** Crear un nuevo gatito en el servidor
+- [X] 1. **LISTADO:** Guardar en el local storage
+- [ ] 2. **BONUS - FORMULARIO:** Crear un nuevo gatito en el servidor
 
 #### 2.15 DOM Avanzado
 
-- [ ] 1. **LISTADO:** Cambiar a DOM Avanzado
+- [ ] 1. **LISTADO:** Cambiar a DOM Avanz

@@ -45,6 +45,9 @@ const newKittenDataObject = {
 let kittenDataList = [];
 /* const kittenDataList = [kittenData_1,kittenData_2,kittenData_3]; */
 
+const GITHUB_USER = '<NataliaBlanco>';
+const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
+
 //Funciones
 function renderKitten(kittenData) {
   const kitten = `<li class="card">
@@ -161,15 +164,7 @@ function filterKitten(event) {
 //Mostrar el litado de gatitos en ell HTML
 renderKittenList(kittenDataList);
 
-//Eventos
-linkNewFormElememt.addEventListener('click', handleClickNewCatForm);
-searchButton.addEventListener('click', filterKitten);
-buttonAdd.addEventListener('click', addNewKitten);
-buttonCancelForm.addEventListener('click', cancelNewKitten);
-
-const GITHUB_USER = '<NataliaBlanco>';
-const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
-fetch(SERVER_URL, {
+/*fetch(SERVER_URL, {
   method: 'GET',
   headers: { 'Content-Type': 'application/json' },
 })
@@ -183,4 +178,48 @@ fetch(SERVER_URL, {
     }));
     renderKittenList(kittenDataList);
   });
-console.log(kittenDataList);
+console.log(kittenDataList); */
+
+
+//Guardar en el local storage
+
+const kittenListStored = JSON.parse(localStorage.getItem('kittensList'));
+
+// Modifica la petición al servidor que hiciste en la sesión anterior, para que solo se realice la petición cuando no hay gatitos en el local storage.
+
+if (kittenListStored) {
+  //si existe el listado de gatitos en el local storage
+  // vuelve a pintar el listado de gatitos
+  console.log('SÍ hay gatitos en el localStorage'); 
+  kittenDataList = kittenListStored; 
+  renderKittenList(kittenDataList);
+  } else {
+  //sino existe el listado de gatitos en el local storage
+  //haz la petición al servidor
+  fetch(SERVER_URL)
+    .then((response) => response.json())
+    .then((data) => {
+      kittenDataList = data.results.map((cat) => ({
+        name: cat.name,
+        desc: cat.desc,
+        image: cat.image,
+        race: cat.race,
+      }));
+      localStorage.setItem('kittensList', JSON.stringify(data.results)); 
+      kittenDataList=data.results; 
+      renderKittenList(kittenDataList);
+      console.log('GUARDO gatitos en el localStorage'); 
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+
+//Eventos
+linkNewFormElememt.addEventListener('click', handleClickNewCatForm);
+searchButton.addEventListener('click', filterKitten);
+buttonAdd.addEventListener('click', addNewKitten);
+buttonCancelForm.addEventListener('click', cancelNewKitten);
+
+
