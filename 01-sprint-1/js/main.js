@@ -49,7 +49,7 @@ const GITHUB_USER = '<NataliaBlanco>';
 const SERVER_URL = `https://dev.adalab.es/api/kittens/${GITHUB_USER}`;
 
 //Funciones
-function renderKitten(kittenData) {
+/*function renderKitten(kittenData) {
   const kitten = `<li class="card">
     <article>
       <img
@@ -65,12 +65,45 @@ function renderKitten(kittenData) {
     </article>
     </li>`;
   return kitten;
+}*/
+
+function renderKitten(kittenData) {
+
+  //falta descripcion
+  
+  const liElement = document.createElement('li');
+  const articleElement = document.createElement('article');
+
+  const imgElement = document.createElement('img');
+  imgElement.setAttribute ('src', kittenData.image); 
+  imgElement.setAttribute ('class', 'card_img'); 
+  imgElement.setAttribute ('alt', 'gatito'); 
+  articleElement.appendChild(imgElement); 
+  const imgkitten = document.createTextNode(kittenData.image); 
+  imgElement.appendChild(imgkitten);
+
+  const h3_1Element = document.createElement('h3');
+  h3_1Element.setAttribute ('class', 'card_title'); 
+  articleElement.appendChild(h3_1Element); 
+  const title = document.createTextNode(kittenData.name); 
+  h3_1Element.appendChild(title); 
+
+  const h3_2Element = document.createElement('h3');
+  h3_2Element.setAttribute ('class', 'card_race'); 
+  articleElement.appendChild(h3_2Element); 
+  const race = document.createTextNode (kittenData.race); 
+  h3_2Element.appendChild (race); 
+
+  liElement.classList.add('card');
+
+  liElement.appendChild (articleElement); 
+  return liElement; 
 }
 
 function renderKittenList(kittenDataList) {
   listElement.innerHTML = '';
   for (const kittenItem of kittenDataList) {
-    listElement.innerHTML += renderKitten(kittenItem);
+    listElement.appendChild (renderKitten(kittenItem)) ;
   }
 }
 
